@@ -1,0 +1,44 @@
+<div class="container">
+<h1>New User</h1>
+<%
+=begin
+HTML way to implement a form in Rails (not recommended, takes time)
+<form action="/users" method="POST" accept-charset="UTF-8">
+  <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts=" />
+  <label>Username</label>
+  <input name="user[username]" type="text" required />
+  <label>Email</label>
+  <input name="user[email]" type="email" required />
+  <label>Password</label>
+  <input name="user[password]" type="password" required />
+  <input type="submit">
+</form>
+<%
+=end%>
+
+<%
+=begin%>
+Using form_tag (deprecated)
+ <%= form_tag('/users', method: :post) do %>
+  <%= label_tag 'username', 'Username' %>
+  <%= text_field_tag :username, nil, name: field_name(:user, :username) %>
+  <%= label_tag 'email', 'Email' %>
+  <%= text_field_tag :email, nil, name: field_name(:user, :email) %>
+  <%= label_tag 'user_password', 'Password' %>
+  <%= password_field_tag "user[password]", nil %>
+  <%= submit_tag "Create user" %>
+<% end %>
+<%
+=end%>
+
+<%= form_with model: @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :email %>
+  <%=email_field("user", "email", placeholder: "example@example.com") %>
+  <%= f.label :password %>
+  <%= password_field(:user, :password) %>
+  <%= f.submit %>
+<% end %>
+
+</div>

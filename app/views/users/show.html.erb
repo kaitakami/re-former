@@ -1,0 +1,8 @@
+<div class="container">
+  <h3><%= @user.username %></h3>
+  <h4><%= @user.email %></h4>
+  <div class="flex">
+    <button><%= link_to "Edit User", edit_user_path(@user) %></button>
+    <button><%= link_to "Go Back", users_path %></button>
+  </div>
+</div>
